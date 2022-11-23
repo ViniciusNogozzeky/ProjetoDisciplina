@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "PRODUTO")
-public class Produto {
+@Table(name = "USUARIO")
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

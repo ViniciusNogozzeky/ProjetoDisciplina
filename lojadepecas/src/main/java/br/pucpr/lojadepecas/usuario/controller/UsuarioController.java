@@ -1,11 +1,12 @@
 package br.pucpr.lojadepecas.usuario.controller;
 
-import br.pucpr.lojadepecas.usuario.entity.Produto;
+import br.pucpr.lojadepecas.usuario.entity.Usuario;
 import br.pucpr.lojadepecas.usuario.service.UsuarioService;
 import br.pucpr.lojadepecas.util.excecao.ExcecaoExemplo;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +22,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/usuario")
+@ComponentScan
 @SecurityScheme(
         name = "Bearer",
         type = SecuritySchemeType.HTTP,
@@ -32,21 +34,21 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<?> salvar(@RequestBody Produto produto) throws ExcecaoExemplo {
-        produto = usuarioService.salvar(produto);
-        return new ResponseEntity<>(produto, HttpStatus.CREATED);
+    public ResponseEntity<?> salvar(@RequestBody Usuario usuario) throws ExcecaoExemplo {
+        usuario = usuarioService.salvar(usuario);
+        return new ResponseEntity<>(usuario, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<Produto> listar() {
+    public List<Usuario> listar() {
         return usuarioService.listar();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscarPorId(@PathVariable("id") Integer id) {
+    public ResponseEntity<Usuario> buscarPorId(@PathVariable("id") Integer id) {
         try {
-            Produto produto = usuarioService.buscarPorId(id);
-            return new ResponseEntity<>(produto, HttpStatus.OK);
+            Usuario usuario = usuarioService.buscarPorId(id);
+            return new ResponseEntity<>(usuario, HttpStatus.OK);
         } catch (NoSuchElementException ex) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }

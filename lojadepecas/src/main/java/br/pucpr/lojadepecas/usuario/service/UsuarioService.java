@@ -1,6 +1,6 @@
 package br.pucpr.lojadepecas.usuario.service;
 
-import br.pucpr.lojadepecas.usuario.entity.Produto;
+import br.pucpr.lojadepecas.usuario.entity.Usuario;
 import br.pucpr.lojadepecas.usuario.repository.UsuarioRepository;
 import br.pucpr.lojadepecas.util.excecao.ExcecaoExemplo;
 import br.pucpr.lojadepecas.veiculo.FeignVeiculo;
@@ -18,28 +18,28 @@ public class UsuarioService {
     @Autowired
     private FeignVeiculo feignVeiculo;
 
-    public Produto salvar(Produto produto) throws ExcecaoExemplo {
-        if (produto.getNome() == null ||
-                produto.getNome().equals("") ||
-                produto.getNome().length() > 300) {
+    public Usuario salvar(Usuario usuario) throws ExcecaoExemplo {
+        if (usuario.getNome() == null ||
+                usuario.getNome().equals("") ||
+                usuario.getNome().length() > 300) {
             //lanco um erro
             throw new ExcecaoExemplo("ERR001","O dados dos usuário estão errados manow.");
         }
 
-        return usuarioRepository.save(produto);
+        return usuarioRepository.save(usuario);
     }
 
-    public List<Produto> listar() {
-        List<Produto> produtos = usuarioRepository.findAll();
+    public List<Usuario> listar() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
         /*for (Usuario u : usuarios) {
             VeiculoTo veiculo = feignVeiculo.buscarPorGuidUsuario(u.getId());
 
             u.setVeiculoTo(veiculo);
         }*/
-        return produtos;
+        return usuarios;
     }
 
-    public Produto buscarPorId(Integer id) {
+    public Usuario buscarPorId(Integer id) {
         return usuarioRepository.findById(id).get();
     }
 
