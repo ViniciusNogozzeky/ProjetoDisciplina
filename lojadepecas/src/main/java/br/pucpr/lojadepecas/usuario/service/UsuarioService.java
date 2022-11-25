@@ -4,6 +4,7 @@ import br.pucpr.lojadepecas.usuario.entity.Usuario;
 import br.pucpr.lojadepecas.usuario.repository.UsuarioRepository;
 import br.pucpr.lojadepecas.util.excecao.ExcecaoExemplo;
 import br.pucpr.lojadepecas.veiculo.FeignVeiculo;
+import br.pucpr.lojadepecas.veiculo.VeiculoTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +32,11 @@ public class UsuarioService {
 
     public List<Usuario> listar() {
         List<Usuario> usuarios = usuarioRepository.findAll();
-        /*for (Usuario u : usuarios) {
+        for (Usuario u : usuarios) {
             VeiculoTo veiculo = feignVeiculo.buscarPorGuidUsuario(u.getId());
 
             u.setVeiculoTo(veiculo);
-        }*/
+        }
         return usuarios;
     }
 

@@ -31,23 +31,23 @@ import java.util.NoSuchElementException;
 public class UsuarioController {
 
     @Autowired
-    UsuarioService usuarioService;
+    UsuarioService UsuarioService;
 
     @PostMapping
     public ResponseEntity<?> salvar(@RequestBody Usuario usuario) throws ExcecaoExemplo {
-        usuario = usuarioService.salvar(usuario);
+        usuario = UsuarioService.salvar(usuario);
         return new ResponseEntity<>(usuario, HttpStatus.CREATED);
     }
 
     @GetMapping
     public List<Usuario> listar() {
-        return usuarioService.listar();
+        return UsuarioService.listar();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscarPorId(@PathVariable("id") Integer id) {
         try {
-            Usuario usuario = usuarioService.buscarPorId(id);
+            Usuario usuario = UsuarioService.buscarPorId(id);
             return new ResponseEntity<>(usuario, HttpStatus.OK);
         } catch (NoSuchElementException ex) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -56,7 +56,7 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     public void excluir(@PathVariable("id") Integer id) {
-        usuarioService.excluir(id);
+        UsuarioService.excluir(id);
     }
 
 }
