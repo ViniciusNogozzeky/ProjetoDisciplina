@@ -21,11 +21,12 @@ public class Produto {
     @Column(name = "NOME", nullable = false)
     private String nome;
 
-    @Column(name = "LOGIN", nullable = false, unique = true)
-    private String login;
+    @Column(name = "INFO", nullable = false, unique = true)
+    private String informacao;
 
-    @Column(name = "SENHA", nullable = false)
-    private String senha;
+    @Column(name = "PREÇO", nullable = false, unique = true)
+    private Double preco;
+
 
     @Transient
     private VeiculoTo veiculoTo;
@@ -46,20 +47,20 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getLogin() {
-        return login;
+    public String getInformacao() {
+        return informacao;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setInformacao(String informacao) {
+        this.informacao = informacao;
     }
 
-    public String getSenha() {
-        return senha;
+    public Double getPreco() {
+        return preco;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPreco(Double preco) {
+        this.preco = preco;
     }
 
     public VeiculoTo getVeiculoTo() {
